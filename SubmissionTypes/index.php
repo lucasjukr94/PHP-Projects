@@ -42,6 +42,7 @@
 		echo $files;
 		echo "<br/>";
 		
+		//Com isso da pra inserir arquivos dentro da base de dados
 		for($i=0;$i<$files;$i++){
 			echo $_FILES["fileData"]["name"][$i];
 			echo "<br/>";
@@ -51,7 +52,25 @@
 			echo "<br/>";
 			echo $_FILES["fileData"]["error"][$i];
 			echo "<br/>";
-			echo file_get_contents($_FILES["fileData"]["tmp_name"][$i]);
+			//Vai imprimir todos os caracteres binários de um certo arquivo
+			//echo file_get_contents($_FILES["fileData"]["tmp_name"][$i]);
+			
+			//Exibe a imagem caso a imagem já esteja no banco de dados
+			$sImage = "data:" . $_FILES["fileData"]["type"][$i] . ";base64," . base64_encode(file_get_contents($_FILES["fileData"]["tmp_name"][$i]));
+			echo "<img src='" . $sImage . "' style='width:400px;height:300px;'/>";
+			
+			//Download dos arquivos
+			header('Pragma: public');
+			header('Expires: 0');
+			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+			header('Cache-Control: private', false);
+			header('Content-Transfer-Encoding: binary');
+			header('Content-Disposition: attachment; filename="'.$_FILES["fileData"]["name"][$i].'";');
+			header('Content-Type: ' . $_FILES["fileData"]["type"][$i]);
+			header('Content-Length: ' . $_FILES["fileData"]["size"][$i]);
+			$string = @file_get_contents($_FILES["fileData"]["tmp_name"][$i]);
+			exit;
+			
 			echo "<br/><br/>";
 		}
 		echo "<br/>";
