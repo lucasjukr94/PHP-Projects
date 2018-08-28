@@ -7,8 +7,8 @@
 		Number:<input name="numberData" type="number"/><br/>
 		Date:<input name="dateData" type="date" value="<?php echo date("Y-m-d")?>"/><br/>
 		Multiple File:<input name="fileData[]" type="file" multiple="multiple" /><br/>
-		Radio:<input name="radioData" type="radio"/>Sim&nbsp;<input name="radioData" type="radio"/>Nao<br/>
-		CheckBox:<input name="checkData" type="checkbox"/>Checked<br/>
+		Radio:<input name="radioData" type="radio" checked="True"/>Sim&nbsp;<input name="radioData" type="radio"/>Nao<br/>
+		CheckBox:<input name="checkData" type="checkbox" checked="True"/>Checked<br/>
 		SelectList:
 		<select name="selectData">
 			<option value="1">Op1</option>
@@ -18,7 +18,7 @@
 		</select>
 		<table>
 			<tr>
-				<td><input type="checkbox" name="checkList[]" value="1"/></td>
+				<td><input type="checkbox" name="checkList[]" value="1" checked="True"/></td>
 				<td><input type="hidden" value="Ch1" name="checkListHidden[]"/>Ch1</td>
 			</tr>
 			<tr>
@@ -34,11 +34,26 @@
 	</form>
 	<div style="background-color:lightgray;width:100%;">
 	<?php
+	//Checar se está tendo uma 
 	if($_SERVER["REQUEST_METHOD"] === "POST"){
 		include "IndexFormClass.php";
 		
 		$files = count($_FILES["fileData"]["name"]);
 		echo $files;
+		echo "<br/>";
+		
+		for($i=0;$i<$files;$i++){
+			echo $_FILES["fileData"]["name"][$i];
+			echo "<br/>";
+			echo $_FILES["fileData"]["size"][$i];
+			echo "<br/>";
+			echo $_FILES["fileData"]["type"][$i];
+			echo "<br/>";
+			echo $_FILES["fileData"]["error"][$i];
+			echo "<br/>";
+			echo file_get_contents($_FILES["fileData"]["tmp_name"][$i]);
+			echo "<br/><br/>";
+		}
 		echo "<br/>";
 		
 		$Form = json_encode($_POST);
@@ -47,6 +62,7 @@
 		
 		$FormDecoded = json_decode($Form,true);
 		
+		//JSON string to Object
 		$IndexFormInst = new IndexForm;
 		$IndexFormInst->setTextData($FormDecoded["textData"]);
 		$IndexFormInst->setNumberData($FormDecoded["numberData"]);
