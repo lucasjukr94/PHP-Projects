@@ -34,6 +34,7 @@
 	</form>
 	<div style="background-color:lightgray;width:100%;">
 	<?php
+	if($_SERVER["REQUEST_METHOD"] === "POST"){
 		include "IndexFormClass.php";
 		
 		$files = count($_FILES["fileData"]["name"]);
@@ -58,6 +59,9 @@
 		
 		echo($IndexFormInst->getTextData());
 		echo "<br/>";
+	}else{
+		echo "not set";
+	}
 	?>
 	</div>
 </body>
