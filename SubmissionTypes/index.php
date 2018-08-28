@@ -51,11 +51,17 @@
 		$IndexFormInst->setTextData($FormDecoded["textData"]);
 		$IndexFormInst->setNumberData($FormDecoded["numberData"]);
 		$IndexFormInst->setDateData($FormDecoded["dateData"]);
-		$IndexFormInst->setRadioData($FormDecoded["radioData"]);
-		$IndexFormInst->setCheckData($FormDecoded["checkData"]);
+		if(($FormDecoded["textData"])===null){
+			$IndexFormInst->setRadioData($FormDecoded["radioData"]);
+		}
+		if(($FormDecoded["textData"])===null){
+			$IndexFormInst->setCheckData($FormDecoded["checkData"]);
+		}
 		$IndexFormInst->setSelectData($FormDecoded["selectData"]);
 		$IndexFormInst->setCheckListHiddenData($FormDecoded["checkListHidden"]);
-		$IndexFormInst->setCheckListData($FormDecoded["checkList"]);
+		if(($FormDecoded["textData"])===null){
+			$IndexFormInst->setCheckListData($FormDecoded["checkList"]);
+		}
 		
 		echo($IndexFormInst->getTextData());
 		echo "<br/>";
