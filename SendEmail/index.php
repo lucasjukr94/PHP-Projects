@@ -38,9 +38,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 	echo "set</br>";
 	$email = $_POST["email"];
 	
-	require 'PHPMailerAutoload.php';
+	require 'phpmailer/src/PHPMailer.php';
+	require 'phpmailer/src/SMTP.php';
+	require 'phpmailer/src/Exception.php';
 
-	$mail = new PHPMailer;
+	$mail = new PHPMailer\PHPMailer\PHPMailer();
 
 	$mail->isSMTP();                                      // Set mailer to use SMTP
 	$mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
