@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 	$mail->Password = 'secret';                           // SMTP password
 	$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 
-	$mail->From = 'from@example.com';
+	$mail->From = $_POST["email"];
 	$mail->FromName = 'Mailer';
 	$mail->addAddress($_POST["email"]);               // Name is optional
 
