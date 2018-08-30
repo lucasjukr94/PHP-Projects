@@ -2,6 +2,8 @@
 <head>
 </head>
 <body>
+	<!--É necessário que o arquivo esteja salvo em um link público junto ao arquivo do projeto html-->
+	<a href="/Projects/SubmissionTypes/ITIL-V3.pdf" download>Download ITIL-V3</a>
 	<form method="post" action="/Projects/SubmissionTypes/index.php" enctype="multipart/form-data">
 		Text:<input name="textData" type="text"/><br/>
 		Number:<input name="numberData" type="number"/><br/>
@@ -59,17 +61,17 @@
 			$sImage = "data:" . $_FILES["fileData"]["type"][$i] . ";base64," . base64_encode(file_get_contents($_FILES["fileData"]["tmp_name"][$i]));
 			echo "<img src='" . $sImage . "' style='width:400px;height:300px;'/>";
 			
-			//Download dos arquivos
-			header('Pragma: public');
-			header('Expires: 0');
-			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-			header('Cache-Control: private', false);
-			header('Content-Transfer-Encoding: binary');
-			header('Content-Disposition: attachment; filename="'.$_FILES["fileData"]["name"][$i].'";');
-			header('Content-Type: ' . $_FILES["fileData"]["type"][$i]);
-			header('Content-Length: ' . $_FILES["fileData"]["size"][$i]);
-			$string = @file_get_contents($_FILES["fileData"]["tmp_name"][$i]);
-			exit;
+			//Download dos arquivos em memória
+			//header('Pragma: public');
+			//header('Expires: 0');
+			//header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+			//header('Cache-Control: private', false);
+			//header('Content-Transfer-Encoding: binary');
+			//header('Content-Disposition: attachment; filename="'.$_FILES["fileData"]["name"][$i].'";');
+			//header('Content-Type: ' . $_FILES["fileData"]["type"][$i]);
+			//header('Content-Length: ' . $_FILES["fileData"]["size"][$i]);
+			//$string = @file_get_contents($_FILES["fileData"]["tmp_name"][$i]);
+			//exit;
 			
 			echo "<br/><br/>";
 		}
