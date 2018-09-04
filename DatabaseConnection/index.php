@@ -3,7 +3,7 @@ include("teste.php");
 
 /*
 Nota: Nas versões acima de 5.7 do mysql, por exemplo o 8.0, pode haver problemas de conexão de usuário não autorizado caching_sha_...
-	  R: Para solucionar esse problema, é necessário abrir o mysql installer e ajustar o mysql server, nos passos a seguir, existe uma opção
+	  R: Para solucionar esse problema, é necessário abrir o mysql installer e ajustar o mysql server. nos passos a seguir, existe uma opção
 	de manter o legado da versão 5.x, selecioná-lo e continuar até finalizar o procedimento.
 */
 
