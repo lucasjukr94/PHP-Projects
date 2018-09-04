@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 	}catch(Exception $e){
 		$enviado = 5;
 	}
-	
+	$conn->close();
 	echo $sql;
 	
 	header("Location: index.php?enviado=".$enviado);
